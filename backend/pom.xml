@@ -110,6 +110,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.web3j</groupId>
+                <artifactId>web3j-maven-plugin</artifactId>
+                <version>4.10.3</version>
+                <configuration>
+                    <packageName>br.edu.ifsertao.integrityvault.contracts</packageName>
+                    <sourceDestination>${project.basedir}/src/main/java</sourceDestination>
+                    <nativeJavaType>true</nativeJavaType>
+                    <soliditySourceFiles>
+                        <directory>../blockchain/contracts</directory>
+                        <includes>
+                            <include>**/*.sol</include>
+                        </includes>
+                    </soliditySourceFiles>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <repositories>
