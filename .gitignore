@@ -1,15 +1,29 @@
-# Remix compiler artifacts
-**/artifacts/
-**/artifacts/**
+# --- Blockchain (Hardhat/Node/Solidity) ---
+blockchain/node_modules/
+blockchain/artifacts/
+blockchain/dist/
+blockchain/bundle/
+blockchain/cache/
+blockchain/types/
+blockchain/.env/
+blockchain/.env.*/
+blockchain/coverage/
+blockchain/.gas-snapshot/
+blockchain/snapshots
 
-# Remix plugin state folders
-deps/
-states/
+# --- Backend (Spring Boot/Java) ---
+backend/target/
+backend/.mvn/
+backend/.mvnw
+backend/.mvnw.cmd
+backend/.idea/
+backend/.vscode/
+backend/*.jar
+backend/*.war
 
-# Debug info
-*.dbg.json
-*.tsbuildinfo
-
-# Optional
-.env
-.env.local
+# --- Global / OS ---
+*.env
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
