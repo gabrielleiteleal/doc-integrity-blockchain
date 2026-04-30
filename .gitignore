@@ -20,6 +20,7 @@ backend/.idea/
 backend/.vscode/
 backend/*.jar
 backend/*.war
+backend/.env
 
 # --- Global / OS ---
 *.env
