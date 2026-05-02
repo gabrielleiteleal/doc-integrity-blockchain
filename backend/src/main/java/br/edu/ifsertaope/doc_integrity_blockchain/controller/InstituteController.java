@@ -1,5 +1,6 @@
 package br.edu.ifsertaope.doc_integrity_blockchain.controller;
 
+import br.edu.ifsertaope.doc_integrity_blockchain.dto.institute.EditInstituteRequestDTO;
 import br.edu.ifsertaope.doc_integrity_blockchain.dto.institute.InstituteRequestDTO;
 import br.edu.ifsertaope.doc_integrity_blockchain.dto.institute.InstituteResponseDTO;
 import br.edu.ifsertaope.doc_integrity_blockchain.service.InstituteService;
@@ -26,4 +27,17 @@ public class InstituteController {
         InstituteResponseDTO response = instituteService.createInstitute(instituteRequestDTO);
         return ResponseEntity.status(201).body(response);
     }
+
+    @PutMapping("/{instituteId}")
+    public ResponseEntity<InstituteResponseDTO> editInstitute(@PathVariable Integer instituteId, @Valid @RequestBody EditInstituteRequestDTO editInstituteRequestDTO) {
+        InstituteResponseDTO response = instituteService.editInstitute(instituteId, editInstituteRequestDTO);
+        return ResponseEntity.status(200).body(response);
+    }
+
+    @DeleteMapping("/{instituteId}")
+    public ResponseEntity<Void> deleteInstitute(@PathVariable Integer instituteId) {
+        instituteService.deleteInstitute(instituteId);
+        return ResponseEntity.status(204).build();
+    }
+
 }
