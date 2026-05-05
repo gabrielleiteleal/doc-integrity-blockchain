@@ -15,10 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-import java.util.HexFormat;
+
+import static br.edu.ifsertaope.doc_integrity_blockchain.utils.HashUtils.generateSHA256;
 
 @Slf4j
 @Service
@@ -31,7 +30,10 @@ public class DocumentService {
     IInstitute instituteRepository;
 
     @Transactional
-    public Document registerDocument(MultipartFile file, Integer instituteId, String documentName) {
+    public Document registerDocument(
+            MultipartFile file,
+            Integer instituteId,
+            String documentName) {
 
         Institute institute = instituteRepository.findById(instituteId).orElseThrow(() -> new InstituteNotFound("Institute not found with id: " + instituteId));
         System.out.println("Iniciando registro do documento " + documentName + " para a instituição " + institute.getName());
@@ -68,16 +70,6 @@ public class DocumentService {
             return bytes;
         } catch (IOException e) {
             throw new DocumentRegistrationException("Failed to extract bytes from file" + e);
-        }
-    }
-
-    private String generateSHA256(byte[] data) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hashBytes = digest.digest(data);
-            return HexFormat.of().formatHex(hashBytes);
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("Failed to generate SHA-256 hash: " + e.getMessage());
         }
     }
 }
